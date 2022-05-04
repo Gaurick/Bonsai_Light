@@ -28,13 +28,40 @@
  *   play song if it's time to play.
  */
 
+#include <Adafruit_NeoPixel.h>
+//libraries to make programming work and be a bit simpler for my brain.
+
+#define LED_PIN 6
+//set the pin the neopixels are connected to.
+
+#define LED_COUNT 8
+//number of lights in the lamp.
+
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+//initialize the "strip" object to do neopixle things.
+
+
+ 
+
 void setup() {
-  // put your setup code here, to run once:
+  Serial.begin(9600);
+  //startup the serial port, for moral support and debugging.
+  
+  strip.begin();
+  strip.setBrightness(64);
+  //set how bright the neopixels are.
+  strip.show();
+  //startup the neopixles and clear them.
 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  for(int a = 0; a < 8; a++){
+    strip.setPixelColor(a, 255, 255, 255);
+    //set the color of the neopixels.
+    //strip.setPixelColor(pixelNumber, red, greed, blue)
+  }
+  strip.show();
 
 }
 
